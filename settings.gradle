@@ -1,0 +1,9 @@
+rootProject.name = 'practice-project'
+include 'jedis'
+include 'lettuce'
+include 'reactor'
+include 'akka'
+include 'axon'
+include 'axon-jpa'
+include 'music163'
+

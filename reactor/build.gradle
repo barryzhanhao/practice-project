@@ -1,0 +1,8 @@
+dependencies {
+    compile "io.projectreactor:reactor-core:3.3.0.M1"
+}
+
+bootJar {
+    enabled = false
+}
+

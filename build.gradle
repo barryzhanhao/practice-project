@@ -1,0 +1,46 @@
+plugins {
+    id 'java'
+    id 'idea'
+    id 'org.springframework.boot' version '2.1.4.RELEASE'
+    id "io.spring.dependency-management" version "1.0.7.RELEASE"
+}
+
+allprojects {
+    repositories {
+        maven {
+            url 'http://maven.aliyun.com/nexus/content/groups/public/'
+        }
+        maven {
+            url 'http://repo.spring.io/milestone'
+        }
+        mavenCentral()
+        jcenter()
+    }
+}
+
+subprojects {
+
+    apply plugin: "java"
+    apply plugin: "idea"
+    apply plugin: "org.springframework.boot"
+    apply plugin: "io.spring.dependency-management"
+
+    group 'opensource'
+    version '1.0.0'
+    sourceCompatibility = 12
+    targetCompatibility = 12
+
+    dependencies {
+        compile 'org.springframework.boot:spring-boot-starter-webflux',
+                'org.projectlombok:lombok:1.18.8',
+                'com.google.guava:guava:27.1-jre'
+        annotationProcessor 'org.projectlombok:lombok:1.18.8'
+        testCompile 'org.springframework.boot:spring-boot-starter-test',
+                'org.awaitility:awaitility:3.1.6'
+    }
+
+}
+
+bootJar {
+    enabled = false
+}

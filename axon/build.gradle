@@ -1,0 +1,5 @@
+dependencies {
+    compile 'org.axonframework:axon-messaging:4.1.1',
+            'org.axonframework:axon-eventsourcing:4.1.1',
+            'org.axonframework:axon-configuration:4.1.1'
+}

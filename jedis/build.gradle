@@ -1,0 +1,7 @@
+dependencies {
+    compile 'redis.clients:jedis:3.0.1'
+}
+
+bootJar {
+    enabled = false
+}
