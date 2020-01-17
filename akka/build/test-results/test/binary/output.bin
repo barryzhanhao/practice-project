@@ -1,3 +1,0 @@
-ƒ11:28:53.546 [sys-akka.actor.default-dispatcher-5] INFO pers.james.practice.akka.ToFindRemoteActor - ToFindRemoteActor is starting
-ù[WARN] [01/17/2020 11:28:53.665] [Test worker] [akka.remote.RemoteActorRefProvider] Using the 'remote' ActorRefProvider directly, which is a low-level layer. For most use cases, the 'cluster' abstraction on top of remoting is more suitable instead.
-ë[INFO] [01/17/2020 11:28:53.790] [Test worker] [akka.remote.artery.tcp.ArteryTcpTransport(akka://app)] Remoting started with transport [Artery tcp]; listening on address [akka://app@192.168.10.21:25520] with UID [-6327220651128277674]
