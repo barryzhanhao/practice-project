@@ -1,7 +1,7 @@
 plugins {
     id 'java'
     id 'idea'
-    id 'org.springframework.boot' version '2.1.4.RELEASE'
+    id 'org.springframework.boot' version '2.2.1.RELEASE'
     id "io.spring.dependency-management" version "1.0.7.RELEASE"
 }
 
@@ -10,16 +10,11 @@ allprojects {
         maven {
             url 'http://maven.aliyun.com/nexus/content/groups/public/'
         }
-        maven {
-            url 'http://repo.spring.io/milestone'
-        }
-        mavenCentral()
         jcenter()
     }
 }
 
 subprojects {
-
     apply plugin: "java"
     apply plugin: "idea"
     apply plugin: "org.springframework.boot"
@@ -27,8 +22,8 @@ subprojects {
 
     group 'opensource'
     version '1.0.0'
-    sourceCompatibility = 12
-    targetCompatibility = 12
+    sourceCompatibility = 11
+    targetCompatibility = 11
 
     dependencies {
         compile 'org.springframework.boot:spring-boot-starter-webflux',
@@ -37,6 +32,8 @@ subprojects {
         annotationProcessor 'org.projectlombok:lombok:1.18.8'
         testCompile 'org.springframework.boot:spring-boot-starter-test',
                 'org.awaitility:awaitility:3.1.6'
+
+        testCompile group: 'org.assertj', name: 'assertj-core', version: '3.14.0'
     }
 
 }
