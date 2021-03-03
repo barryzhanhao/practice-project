@@ -26,14 +26,14 @@ subprojects {
     targetCompatibility = 11
 
     dependencies {
-        compile 'org.springframework.boot:spring-boot-starter-webflux',
+        implementation 'org.springframework.boot:spring-boot-starter-webflux',
                 'org.projectlombok:lombok:1.18.8',
                 'com.google.guava:guava:27.1-jre'
         annotationProcessor 'org.projectlombok:lombok:1.18.8'
-        testCompile 'org.springframework.boot:spring-boot-starter-test',
+        testImplementation 'org.springframework.boot:spring-boot-starter-test',
                 'org.awaitility:awaitility:3.1.6'
 
-        testCompile group: 'org.assertj', name: 'assertj-core', version: '3.14.0'
+        testImplementation group: 'org.assertj', name: 'assertj-core', version: '3.14.0'
     }
 
 }
