@@ -1,5 +1,5 @@
 dependencies {
-    implementation 'org.axonframework:axon-messaging:4.1.1',
-            'org.axonframework:axon-eventsourcing:4.1.1',
-            'org.axonframework:axon-configuration:4.1.1'
+    implementation "org.axonframework:axon-messaging:$axonVersion",
+            "org.axonframework:axon-eventsourcing:$axonVersion",
+            "org.axonframework:axon-configuration:$axonVersion"
 }

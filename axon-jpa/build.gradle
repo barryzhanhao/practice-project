@@ -1,10 +1,10 @@
 dependencies {
-    implementation 'org.axonframework:axon-messaging:4.1.1',
-            'org.axonframework:axon-eventsourcing:4.1.1',
-            'org.axonframework:axon-configuration:4.1.1',
-            'org.axonframework:axon-spring:4.1.1'
+    implementation "org.axonframework:axon-messaging:$axonVersion",
+            "org.axonframework:axon-eventsourcing:$axonVersion",
+            "org.axonframework:axon-configuration:$axonVersion",
+            "org.axonframework:axon-spring:$axonVersion"
 
-    implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+    implementation "org.springframework.boot:spring-boot-starter-data-jpa"
 
-    implementation 'mysql:mysql-connector-java'
+    implementation "mysql:mysql-connector-java"
 }

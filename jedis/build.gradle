@@ -1,7 +1,3 @@
 dependencies {
-    implementation 'redis.clients:jedis:3.0.1'
-}
-
-bootJar {
-    enabled = false
+    implementation 'redis.clients:jedis'
 }
