@@ -1,8 +1,9 @@
 package pers.james.practice.axon.jpa.aggregate;
 
-import java.io.Serializable;
 import org.axonframework.common.Assert;
 import org.axonframework.common.IdentifierFactory;
+
+import java.io.Serializable;
 
 public class AccountId implements Serializable {
 

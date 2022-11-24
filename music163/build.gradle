@@ -1,5 +1,5 @@
 dependencies {
     implementation "org.jsoup:jsoup:$jsoupVersion"
     implementation 'com.squareup.okhttp3:okhttp'
-    implementation  "commons-io:commons-io:$commonIOVersion"
+    implementation "commons-io:commons-io:$commonIOVersion"
 }

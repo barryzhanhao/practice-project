@@ -1,14 +1,12 @@
 package pers.james.practice.reactor.controller;
 
 
-import java.util.List;
 import lombok.extern.slf4j.Slf4j;
 import org.reactivestreams.Subscriber;
 import org.reactivestreams.Subscription;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 import reactor.core.publisher.Flux;
-import reactor.core.publisher.Mono;
 
 @Slf4j
 @RestController

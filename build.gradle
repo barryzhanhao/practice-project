@@ -3,11 +3,13 @@ plugins {
     id 'java-library'
     id 'project-report'
     id 'idea'
-    id 'org.springframework.boot' version '2.4.6' apply false
+    id 'org.springframework.boot' version '3.0.0-RC2' apply false
+    id 'org.graalvm.buildtools.native' version '0.9.17' apply false
 }
 
 ext {
-    springBootVersion = '2.4.6'
+    springBootVersion = '3.0.0-RC2'
+
     lombokVersion = '1.18.24'
     guavaVersion = '27.1-jre'
     awaitilityVersion = '1.18.24'
@@ -21,6 +23,7 @@ ext {
 
 allprojects {
     repositories {
+        maven { url 'https://repo.spring.io/milestone' }
         maven {
             url 'https://maven.aliyun.com/nexus/content/groups/public/'
         }
@@ -49,7 +52,7 @@ subprojects {
     dependencies {
         implementation(platform("org.springframework.boot:spring-boot-dependencies:$springBootVersion"))
 
-        implementation 'org.springframework.boot:spring-boot-starter-webflux',
+        implementation 'org.springframework.boot:spring-boot-starter-web',
                 "org.projectlombok:lombok:$lombokVersion",
                 "com.google.guava:guava:$guavaVersion"
         annotationProcessor "org.projectlombok:lombok:$lombokVersion"

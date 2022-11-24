@@ -1,7 +1,6 @@
 package pers.james.practice.axon;
 
 
-import java.util.concurrent.TimeUnit;
 import org.axonframework.config.Configuration;
 import org.axonframework.config.DefaultConfigurer;
 import org.axonframework.eventsourcing.eventstore.inmemory.InMemoryEventStorageEngine;
@@ -14,12 +13,12 @@ public class Application {
 
     public static void main(String[] args) throws InterruptedException {
         Configuration config = DefaultConfigurer.defaultConfiguration().configureAggregate(BankAccount.class)
-            .configureEmbeddedEventStore(configuration -> new InMemoryEventStorageEngine()).buildConfiguration();
+                .configureEmbeddedEventStore(configuration -> new InMemoryEventStorageEngine()).buildConfiguration();
         config.start();
-        AccountId accountId=new AccountId();
-        config.commandGateway().send(new CreateAccountCommand(accountId,"haha",1000));
-        config.commandGateway().send(new WithdrawMoneyCommand(accountId,500));
-        config.commandGateway().send(new WithdrawMoneyCommand(accountId,200));
+        AccountId accountId = new AccountId();
+        config.commandGateway().send(new CreateAccountCommand(accountId, "haha", 1000));
+        config.commandGateway().send(new WithdrawMoneyCommand(accountId, 500));
+        config.commandGateway().send(new WithdrawMoneyCommand(accountId, 200));
     }
 
 }

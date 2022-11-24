@@ -1,22 +1,23 @@
 package pers.james.practice.axon.jpa.aggregate;
 
-import java.math.BigDecimal;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.axonframework.commandhandling.CommandHandler;
 import org.axonframework.eventhandling.EventHandler;
 import org.axonframework.modelling.command.AggregateIdentifier;
-import static org.axonframework.modelling.command.AggregateLifecycle.apply;
 import org.axonframework.spring.stereotype.Aggregate;
 import pers.james.practice.axon.jpa.command.CreateAccountCommand;
 import pers.james.practice.axon.jpa.command.WithdrawMoneyCommand;
 import pers.james.practice.axon.jpa.event.AccountCreatedEvent;
 import pers.james.practice.axon.jpa.event.MoneyWithdrawnEvent;
 
+import java.math.BigDecimal;
+
+import static org.axonframework.modelling.command.AggregateLifecycle.apply;
 
 @Data
 @Slf4j

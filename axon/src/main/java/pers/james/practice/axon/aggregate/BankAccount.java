@@ -1,17 +1,19 @@
 package pers.james.practice.axon.aggregate;
 
-import java.math.BigDecimal;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.axonframework.commandhandling.CommandHandler;
 import org.axonframework.eventhandling.EventHandler;
 import org.axonframework.modelling.command.AggregateIdentifier;
-import static org.axonframework.modelling.command.AggregateLifecycle.apply;
 import pers.james.practice.axon.command.CreateAccountCommand;
 import pers.james.practice.axon.command.WithdrawMoneyCommand;
 import pers.james.practice.axon.event.AccountCreatedEvent;
 import pers.james.practice.axon.event.MoneyWithdrawnEvent;
+
+import java.math.BigDecimal;
+
+import static org.axonframework.modelling.command.AggregateLifecycle.apply;
 
 @Data
 @Slf4j

@@ -1,6 +1,5 @@
 package pers.james.practice.letture.controller;
 
-import com.google.common.collect.Lists;
 import io.lettuce.core.LettuceFutures;
 import io.lettuce.core.RedisClient;
 import io.lettuce.core.RedisFuture;
@@ -9,14 +8,13 @@ import io.lettuce.core.api.StatefulRedisConnection;
 import io.lettuce.core.api.async.RedisAsyncCommands;
 import io.lettuce.core.api.reactive.RedisReactiveCommands;
 import io.lettuce.core.api.sync.RedisCommands;
-import java.time.Duration;
-import java.util.List;
-import java.util.concurrent.ExecutionException;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-import reactor.core.publisher.Mono;
+
+import java.time.Duration;
+import java.util.concurrent.ExecutionException;
 
 @Slf4j
 @RestController
@@ -56,7 +54,7 @@ public class LettureController {
         RedisClient redisClient = RedisClient.create(RedisURI.builder().withHost("127.0.0.1").withPort(6379).build());
         StatefulRedisConnection<String, String> connection = redisClient.connect();
         RedisReactiveCommands<String, String> commands = connection.reactive();
-        commands.set(key,value).subscribe(log::info);
+        commands.set(key, value).subscribe(log::info);
         return "Ok";
     }
 

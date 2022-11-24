@@ -2,9 +2,6 @@ package pers.james.practice.music;
 
 import com.google.common.collect.Lists;
 import com.google.common.io.Files;
-import java.io.File;
-import java.io.InputStream;
-import java.util.List;
 import lombok.extern.slf4j.Slf4j;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
@@ -16,11 +13,15 @@ import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 import org.springframework.util.StringUtils;
 
+import java.io.File;
+import java.io.InputStream;
+import java.util.List;
+
 @Slf4j
 public class Music163 {
 
     private static OkHttpClient okHttpClient = new OkHttpClient().newBuilder().followRedirects(false)
-        .followSslRedirects(false).build();
+            .followSslRedirects(false).build();
 
     public static void main(String[] args) throws Exception {
         List<String> songIds = getSongIds();
