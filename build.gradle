@@ -3,12 +3,12 @@ plugins {
     id 'java-library'
     id 'project-report'
     id 'idea'
-    id 'org.springframework.boot' version '3.0.0-RC2' apply false
-    id 'org.graalvm.buildtools.native' version '0.9.17' apply false
+    id 'org.springframework.boot' version '3.0.0' apply false
+    id 'org.graalvm.buildtools.native' version '0.9.18' apply false
 }
 
 ext {
-    springBootVersion = '3.0.0-RC2'
+    springBootVersion = '3.0.0'
 
     lombokVersion = '1.18.24'
     guavaVersion = '27.1-jre'
