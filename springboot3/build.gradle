@@ -4,12 +4,10 @@ apply plugin: "org.graalvm.buildtools.native"
 dependencies {
 }
 
-bootBuildImage {
-    docker{
-        publishRegistry{
-            username = "admin"
-            password = "secret-password"
-            url = "https://registry.myserver.com"
+graalvmNative {
+    binaries {
+        main {
+            sharedLibrary = false
         }
     }
 }

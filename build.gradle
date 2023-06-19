@@ -3,13 +3,12 @@ plugins {
     id 'java-library'
     id 'project-report'
     id 'idea'
-    id 'org.springframework.boot' version '3.0.0' apply false
-    id 'org.graalvm.buildtools.native' version '0.9.18' apply false
+    id 'org.springframework.boot' version '3.1.0' apply false
+    id 'org.graalvm.buildtools.native' version '0.9.22' apply false
 }
 
 ext {
-    springBootVersion = '3.0.0'
-
+    springBootVersion = '3.1.0'
     lombokVersion = '1.18.24'
     guavaVersion = '27.1-jre'
     awaitilityVersion = '1.18.24'
@@ -29,11 +28,6 @@ allprojects {
         }
     }
 
-    configurations {
-        [compileClasspath, runtimeClasspath]*.resolutionStrategy*.activateDependencyLocking()
-
-        gradle.startParameter.writeDependencyLocks = true
-    }
 }
 
 subprojects {
