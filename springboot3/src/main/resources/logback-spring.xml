@@ -1,0 +1,190 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration scan="true" scanPeriod="60 seconds" debug="false">
+
+    <include resource="org/springframework/boot/logging/logback/defaults.xml"/>
+
+    <!--scan:当此属性设置为true时，配置文件如果发生改变，将会被重新加载，默认值为true。-->
+    <!--scanPeriod:设置监测配置文件是否有修改的时间间隔，如果没有给出时间单位，默认单位是毫秒。当scan为true时，此属性生效。默认的时间间隔为1分钟。-->
+    <!--debug:当此属性设置为true时，将打印出logback内部日志信息，实时查看logback运行状态。默认值为false。-->
+    <!--	<contextName>${APP_NAME}</contextName>-->
+    <!--	<contextName>taotao-cloud-logback</contextName>-->
+
+    <!-- Context listeners -->
+    <!--	<contextListener class="com.yomahub.tlog.core.enhance.logback.TLogLogbackTTLMdcListener"/>-->
+
+    <!--https://logback.qos.ch/manual/layouts.html-->
+
+    <!-- LOG_LEVEL_PATTERN	see ch.qos.logback.classic.PatternLayout-->
+    <!--<springProperty name="CONSOLE_LOG_PATTERN" source="logging.pattern.console"-->
+    <springProperty name="CONSOLE_LOG_PATTERN" source="logging.pattern.console"
+                    defaultValue="%m%n${LOG_EXCEPTION_CONVERSION_WORD:-%wEx}"/>
+
+    <!--
+       日志输出格式：
+           %d表示日期时间，
+           %thread表示线程名，
+           %-5level：级别从左显示5个字符宽度
+           %logger{50} 表示logger名字最长50个字符，否则按照句点分割。
+           %msg：日志消息，
+           %n是换行符
+           %-15.15():如果记录的线程字符长度小于15(第一个)则用空格在右侧补齐,如果字符长度大于15(第二个),则从开头开始截断多余的字符
+           %-50.50()：如果记录的logger字符长度小于50(第一个)则用空格在右侧补齐,如果字符长度大于50(第二个),则从开头开始截断多余的字符
+           %highlight()：颜色，info为蓝色，warn为浅红，error为加粗红，debug为黑色
+           %boldMagenta:粗红
+           %magenta:洋红
+           $cyan:青色
+           %white:白色
+       -->
+
+
+    <include resource="logback/console-appender.xml"/>
+    <!--	<include resource="logback/file-appender.xml"/>-->
+    <!--	<include resource="logback/kafka-appender.xml"/>-->
+    <!--	<include resource="logback/loki-appender.xml"/>-->
+    <!--	<include resource="logback/graylog-appender.xml"/>-->
+    <!--	<include resource="logback/logstash-appender.xml"/>-->
+    <!--		<include resource="logback/db-appender.xml"/>-->
+
+    <!--
+        <logger>用来设置某一个包或者具体的某一个类的日志打印级别、
+        以及指定<appender>。<logger>仅有一个name属性，
+        一个可选的level和一个可选的addtivity属性。
+        name:用来指定受此logger约束的某一个包或者具体的某一个类。
+        level:用来设置打印级别，大小写无关：TRACE, DEBUG, INFO, WARN, ERROR, ALL 和 OFF，
+              还有一个特俗值INHERITED或者同义词NULL，代表强制执行上级的级别。
+              如果未设置此属性，那么当前logger将会继承上级的级别。
+        addtivity:是否向上级logger传递打印信息。默认是true。
+        <logger name="org.springframework.web" level="info"/>
+        <logger name="org.springframework.scheduling.annotation.ScheduledAnnotationBeanPostProcessor" level="INFO"/>
+    -->
+
+    <!--为某个包单独配置logger
+    比如定时任务，写代码的包名为：net.add1s.slf4j-logback
+    步骤如下：
+    1、定义一个appender，取名为task（随意，只要下面logger引用就行了）
+    appender的配置按照需要即可
+    2、定义一个logger:
+    <logger name="net.add1s.slf4j-logback" level="DEBUG" additivity="false">
+      <appender-ref ref="scheduledJob" />
+    </logger>
+    addtivity:是否向上级loger传递打印信息。默认是true。
+    注意：additivity必须设置为false，这样只会交给task这个appender，否则其他appender也会打印net.add1s.slf4j-logback里的log信息。
+    3、这样，在net.add1s.slf4j-logback的logger就会是上面定义的logger了。
+    private static Logger logger = LoggerFactory.getLogger(Class1.class);
+    -->
+
+    <!--<logger name="org.springframework.cloud.openfeign" level="DEBUG"/>-->
+    <!--<logger name="org.apache.kafka" level="OFF"/>-->
+    <!--<logger name="org.apache.zookeeper.ZooKeeper" level="ERROR"/>-->
+
+    <!-- show parameters for hibernate sql 专为 Hibernate 定制 -->
+    <!--	<logger name="org.hibernate.type.descriptor.sql.BasicBinder" level="TRACE"/>-->
+    <!--	<logger name="org.hibernate.type.descriptor.sql.BasicExtractor" level="DEBUG"/>-->
+    <!--	<logger name="org.hibernate.SQL" level="DEBUG"/>-->
+    <!--	<logger name="org.hibernate.engine.QueryParameters" level="DEBUG"/>-->
+    <!--	<logger name="org.hibernate.engine.query.HQLQueryPlan" level="DEBUG"/>-->
+
+    <!--myibatis log configure-->
+    <!--	<logger name="com.apache.ibatis" level="TRACE"/>-->
+    <!--	<logger name="java.sql.Connection" level="DEBUG"/>-->
+    <!--	<logger name="java.sql.Statement" level="DEBUG"/>-->
+    <!--	<logger name="java.sql.PreparedStatement" level="DEBUG"/>-->
+    <!--	<logger name="kafka.server.KafkaConfig" level="INFO"/>-->
+    <!--	<logger name="org.I0Itec.zkclient" level="INFO"/>-->
+    <!--	<logger name="kafka.admin.AdminClient.AdminConfig" level="INFO"/>-->
+
+    <!--		&lt;!&ndash; 输出SQL到控制台和文件&ndash;&gt;-->
+    <!--		<logger name="org.hibernate.SQL" additivity="false">-->
+    <!--			<level value="DEBUG"/>-->
+    <!--			<appender-ref ref="FILE_SQL_ASYNC_APPENDER"/>-->
+    <!--		</logger>-->
+
+    <!--		&lt;!&ndash; 输出SQL的参数到控制台和文件&ndash;&gt;-->
+    <!--		<logger name="org.hibernate.type.descriptor.sql.BasicBinder" additivity="false" level="TRACE">-->
+    <!--			<level value="TRACE"/>-->
+    <!--			<appender-ref ref="FILE_SQL_ASYNC_APPENDER"/>-->
+    <!--		</logger>-->
+
+    <!-- 日志输出级别，OFF level > FATAL > ERROR > WARN > INFO > DEBUG > ALL level -->
+    <!--	<root level="INFO">-->
+    <!--		<appender-ref ref="CONSOLE_ASYNC_APPENDER"/>-->
+    <!--		<appender-ref ref="FILE_ALL_ASYNC_APPENDER"/>-->
+    <!--		<appender-ref ref="FILE_WARN_ASYNC_APPENDER"/>-->
+    <!--		<appender-ref ref="FILE_ERROR_ASYNC_APPENDER"/>-->
+    <!--		<appender-ref ref="FILE_DEBUG_ASYNC_APPENDER"/>-->
+    <!--		<appender-ref ref="KAFKA_ASYNC_APPENDER"/>-->
+    <!--		<appender-ref ref="GELF_ASYNC_APPENDER"/>-->
+    <!--		<appender-ref ref="LOKI_ASYNC_APPENDER"/>-->
+    <!--		&lt;!&ndash;<appender-ref ref="LOGSTASH_ASYNC_APPENDER"/>&ndash;&gt;-->
+    <!--	</root>-->
+
+    <root level="INFO">
+        <appender-ref ref="CONSOLE_ASYNC_APPENDER"/>
+    </root>
+
+    <springProfile name="dev">
+        <!--		<logger name="org.hibernate.type.descriptor.sql.BasicBinder" additivity="false"-->
+        <!--			level="TRACE">-->
+        <!--			<level value="TRACE"/>-->
+        <!--			<appender-ref ref="FILE_SQL_ASYNC_APPENDER"/>-->
+        <!--		</logger>-->
+
+        <!--		<logger name="org.hibernate.SQL" additivity="false" level="DEBUG">-->
+        <!--			<level value="DEBUG"/>-->
+        <!--			<appender-ref ref="FILE_SQL_ASYNC_APPENDER"/>-->
+        <!--		</logger>-->
+
+        <root level="INFO">
+            <appender-ref ref="CONSOLE_ASYNC_APPENDER"/>
+            <!--			<appender-ref ref="FILE_ALL_ASYNC_APPENDER"/>-->
+            <!--			<appender-ref ref="FILE_WARN_ASYNC_APPENDER"/>-->
+            <!--			<appender-ref ref="FILE_ERROR_ASYNC_APPENDER"/>-->
+            <!--			<appender-ref ref="FILE_DEBUG_ASYNC_APPENDER"/>-->
+            <!--			<appender-ref ref="KAFKA_ASYNC_APPENDER"/>-->
+            <!--			<appender-ref ref="GELF_ASYNC_APPENDER"/>-->
+            <!--			<appender-ref ref="LOKI_ASYNC_APPENDER"/>-->
+            <!--			<appender-ref ref="LOGSTASH_ASYNC_APPENDER"/>-->
+            <!--			<appender-ref ref="LOGSTASH_APPENDER"/>-->
+        </root>
+    </springProfile>
+
+    <springProfile name="test">
+        <root level="INFO">
+            <!--			<appender-ref ref="CONSOLE_ASYNC_APPENDER"/>-->
+            <!--			<appender-ref ref="FILE_ALL_ASYNC_APPENDER"/>-->
+            <!--			<appender-ref ref="FILE_WARN_ASYNC_APPENDER"/>-->
+            <!--			<appender-ref ref="FILE_ERROR_ASYNC_APPENDER"/>-->
+            <!--<appender-ref ref="KAFKA_APPENDER"/>-->
+            <!--<appender-ref ref="LOGSTASH_ASYNC_APPENDER"/>-->
+        </root>
+    </springProfile>
+
+    <springProfile name="pre">
+        <root level="INFO">
+            <!--			<appender-ref ref="CONSOLE_ASYNC_APPENDER"/>-->
+            <!--			<appender-ref ref="FILE_ALL_ASYNC_APPENDER"/>-->
+            <!--			<appender-ref ref="FILE_WARN_ASYNC_APPENDER"/>-->
+            <!--			<appender-ref ref="FILE_ERROR_ASYNC_APPENDER"/>-->
+            <!--<appender-ref ref="KAFKA_APPENDER"/>-->
+            <!--<appender-ref ref="LOGSTASH_ASYNC_APPENDER"/>-->
+        </root>
+    </springProfile>
+
+    <!-- 生产环境,多个使用逗号隔开,生产环境输出ERROR级别日志,只以文件形式输出-->
+    <springProfile name="prod">
+        <!--		<logger name="org.hibernate.type.descriptor.sql.BasicBinder" additivity="false"-->
+        <!--			level="TRACE">-->
+        <!--			<level value="TRACE"/>-->
+        <!--			<appender-ref ref="FILE_SQL_ASYNC_APPENDER"/>-->
+        <!--		</logger>-->
+
+        <!--		<root level="ERROR">-->
+        <!--			<appender-ref ref="CONSOLE_ASYNC_APPENDER"/>-->
+        <!--			<appender-ref ref="FILE_ALL_ASYNC_APPENDER"/>-->
+        <!--			<appender-ref ref="FILE_WARN_ASYNC_APPENDER"/>-->
+        <!--			<appender-ref ref="FILE_ERROR_ASYNC_APPENDER"/>-->
+        <!--			&lt;!&ndash;<appender-ref ref="KAFKA_APPENDER"/>&ndash;&gt;-->
+        <!--			&lt;!&ndash;<appender-ref ref="LOGSTASH_ASYNC_APPENDER"/>&ndash;&gt;-->
+        <!--		</root>-->
+    </springProfile>
+</configuration>

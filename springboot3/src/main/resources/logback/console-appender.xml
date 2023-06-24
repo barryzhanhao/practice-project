@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<included>
+    <!-- 控制台日志 -->
+    <appender name="CONSOLE_APPENDER" class="ch.qos.logback.core.ConsoleAppender">
+        <layout class="ch.qos.logback.classic.PatternLayout">
+            <pattern>${CONSOLE_LOG_PATTERN}</pattern>
+        </layout>
+    </appender>
+
+    <appender name="CONSOLE_ASYNC_APPENDER" class="ch.qos.logback.classic.AsyncAppender">
+        <queueSize>512</queueSize>
+        <discardingThreshold>0</discardingThreshold>
+        <includeCallerData>true</includeCallerData>
+
+        <appender-ref ref="CONSOLE_APPENDER"/>
+    </appender>
+
+    <!--	<appender name="CONSOLE_DISRUPTOR_ASYNC_APPENDER" class="com.taotao.cloud.logger.logback.appender.DisruptorAsyncAppender">-->
+    <!--		&lt;!&ndash;   指向要输出的appender     &ndash;&gt;-->
+    <!--		<appender-ref ref="consoleLog"/>-->
+    <!--		<appender-ref ref="debugLog"/>-->
+    <!--		&lt;!&ndash;    因为环形队列的缘故，如果生产速度大于消费速度，就会被覆盖，如要避免，可以调整环形队列的大小，满足吞吐量大小即可,ringBufferSize必须为2的幂次方  &ndash;&gt;-->
+    <!--		<ringBufferSize>1024</ringBufferSize>-->
+    <!--		&lt;!&ndash;    coreSize为线程数，如果大于1，可能会导致顺序不一致    &ndash;&gt;-->
+    <!--		<coreSize>1</coreSize>-->
+    <!--		<waitStrategy>YieldingWaitStrategy</waitStrategy>-->
+    <!--	</appender>-->
+
+    <!--	<root level="debug">-->
+    <!--		<appender-ref ref="disruptorAsyncConsoleAppender"/>-->
+    <!--	</root>-->
+</included>
