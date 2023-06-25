@@ -6,6 +6,13 @@ spring:
       username: root
       password: root
       driver-class-name: com.mysql.cj.jdbc.Driver
-
-server:
-  port: 9090
+  data:
+    mongodb:
+      database: test
+      host: 127.0.0.1
+      port: 27017
+      username: admin
+      password: "123456"
+    redis:
+      host: 127.0.0.1
+      port: 6378
