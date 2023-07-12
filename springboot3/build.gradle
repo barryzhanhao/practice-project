@@ -70,6 +70,9 @@ graalvmNative {
             buildArgs.add('--allow-incomplete-classpath')
             buildArgs.add('-H:+ReportExceptionStackTraces')
 
+            buildArgs.add('--enable-monitoring=jmxserver,jvmstat,heapdump')
+            buildArgs.add('--gc=parallel')
+
 //            buildArgs.add('-H:ReflectionConfigurationFiles=./reflection-config.json')
         }
     }
