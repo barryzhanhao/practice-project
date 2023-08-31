@@ -3,12 +3,12 @@ plugins {
     id 'java-library'
     id 'project-report'
     id 'idea'
-    id 'org.springframework.boot' version '3.1.1' apply false
+    id 'org.springframework.boot' version '3.1.2' apply false
     id 'org.graalvm.buildtools.native' version '0.9.23' apply false
 }
 
 ext {
-    springBootVersion = '3.1.1'
+    springBootVersion = '3.1.2'
     lombokVersion = '1.18.24'
     guavaVersion = '27.1-jre'
     awaitilityVersion = '1.18.24'
@@ -22,7 +22,7 @@ ext {
 
 allprojects {
     repositories {
-        mavenCentral()
+        mavenLocal()
         maven { url 'https://repo.spring.io/milestone' }
         maven {
             url 'https://maven.aliyun.com/nexus/content/groups/public/'
