@@ -28,7 +28,6 @@ allprojects {
             url 'https://maven.aliyun.com/nexus/content/groups/public/'
         }
     }
-
 }
 
 subprojects {
@@ -55,6 +54,21 @@ subprojects {
         testImplementation 'org.springframework.boot:spring-boot-starter-test',
                 "org.awaitility:awaitility:$awaitilityVersion",
                 "org.assertj:assertj-core"
+    }
+
+    dependencyLocking {
+        lockAllConfigurations()
+    }
+
+    tasks.register('verifyLockFileDiff') {
+        def hasDiff = exec {
+            executable 'git'
+            args = ['diff', "--exit-code", "gradle.lockfile"]
+            ignoreExitValue true
+        }.getExitValue()
+        if (hasDiff) {
+            throw new GradleException("Found diff in lock files. Please run 'gradle dependencies --write-locks' and commit updated lock files.")
+        }
     }
 
 }
