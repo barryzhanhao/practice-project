@@ -2,8 +2,6 @@ apply plugin: "org.springframework.boot"
 apply plugin: "org.graalvm.buildtools.native"
 
 dependencies {
-//    implementation "com.baomidou:mybatis-plus-boot-starter:3.5.3.1"
-
     implementation "org.springframework.boot:spring-boot-starter-web"
     implementation "org.springframework.boot:spring-boot-starter-actuator"
     implementation "org.springframework.boot:spring-boot-autoconfigure"
@@ -71,8 +69,8 @@ graalvmNative {
             buildArgs.add('-H:+ReportExceptionStackTraces')
 
             buildArgs.add('--enable-monitoring=jmxserver,jvmstat,heapdump')
-            buildArgs.add('--gc=parallel')
-//            buildArgs.add("-O2")
+            buildArgs.add('--gc=G1')
+            buildArgs.add("--pgo")
 //            buildArgs.add('-H:ReflectionConfigurationFiles=./reflection-config.json')
         }
     }

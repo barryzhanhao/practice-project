@@ -3,13 +3,13 @@ plugins {
     id 'java-library'
     id 'project-report'
     id 'idea'
-    id 'org.springframework.boot' version '3.1.2' apply false
-    id 'org.graalvm.buildtools.native' version '0.9.23' apply false
+    id 'org.springframework.boot' version '3.1.5' apply false
+    id 'org.graalvm.buildtools.native' version '0.9.27' apply false
 }
 
 ext {
-    springBootVersion = '3.1.2'
-    lombokVersion = '1.18.28'
+    springBootVersion = '3.1.5'
+    lombokVersion = '1.18.30'
     guavaVersion = '27.1-jre'
     awaitilityVersion = '4.2.0'
     jsoupVersion = '1.12.1'
@@ -23,10 +23,10 @@ ext {
 allprojects {
     repositories {
         mavenLocal()
-        maven { url 'https://repo.spring.io/milestone' }
         maven {
             url 'https://maven.aliyun.com/nexus/content/groups/public/'
         }
+        mavenCentral()
     }
 }
 
@@ -40,8 +40,8 @@ subprojects {
     version '1.0.0'
 
     [compileJava, compileTestJava]*.options*.encoding = 'UTF-8'
-    sourceCompatibility = JavaVersion.VERSION_17
-    targetCompatibility = JavaVersion.VERSION_17
+    sourceCompatibility = JavaVersion.VERSION_21
+    targetCompatibility = JavaVersion.VERSION_21
 
     dependencies {
         implementation(platform("org.springframework.boot:spring-boot-dependencies:$springBootVersion"))
