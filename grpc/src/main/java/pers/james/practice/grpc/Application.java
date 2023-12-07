@@ -1,4 +1,4 @@
-package pers.james.practice.jedis;
+package pers.james.practice.grpc;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

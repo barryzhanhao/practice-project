@@ -1,19 +1,36 @@
-plugins {
-    id 'java'
+buildscript {
+    ext {
+        protobufVersion = '3.22.3'
+        protobufPluginVersion = '0.9.4'
+        grpcVersion = '1.59.0'
+    }
 }
 
-group = 'org.example'
-version = 'unspecified'
-
-repositories {
-    mavenCentral()
+plugins {
+    id 'java-library'
+    id 'com.google.protobuf' version "${protobufPluginVersion}"
 }
 
 dependencies {
-    testImplementation platform('org.junit:junit-bom:5.9.1')
-    testImplementation 'org.junit.jupiter:junit-jupiter'
+    implementation "io.grpc:grpc-protobuf:${grpcVersion}"
+    implementation "io.grpc:grpc-stub:${grpcVersion}"
+    implementation('org.springframework.boot:spring-boot-starter')
+    implementation 'net.devh:grpc-server-spring-boot-starter:2.15.0.RELEASE'
+    compileOnly 'org.apache.tomcat:annotations-api:6.0.53' // necessary for Java 9+
 }
 
-test {
-    useJUnitPlatform()
+protobuf {
+    protoc {
+        artifact = "com.google.protobuf:protoc:${protobufVersion}"
+    }
+    plugins {
+        grpc {
+            artifact = "io.grpc:protoc-gen-grpc-java:${grpcVersion}"
+        }
+    }
+    generateProtoTasks {
+        all()*.plugins {
+            grpc {}
+        }
+    }
 }

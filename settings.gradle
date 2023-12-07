@@ -1,10 +1,10 @@
 pluginManagement {
     repositories {
-        gradlePluginPortal()
-        maven { url 'https://repo.spring.io/milestone' }
         maven {
             url 'https://maven.aliyun.com/nexus/content/groups/public/'
         }
+        gradlePluginPortal()
+        maven { url 'https://repo.spring.io/milestone' }
     }
 }
 
@@ -17,4 +17,6 @@ include 'axon'
 include 'axon-jpa'
 include 'music163'
 include 'springboot3'
+include 'grpc'
+include 'grpc-server'
 
