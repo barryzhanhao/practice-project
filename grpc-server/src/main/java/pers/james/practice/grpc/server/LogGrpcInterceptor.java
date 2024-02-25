@@ -24,10 +24,6 @@ import io.grpc.ServerCall;
 import io.grpc.ServerCallHandler;
 import io.grpc.ServerInterceptor;
 
-/**
- * @author Michael (yidongnan@gmail.com)
- * @since 2016/12/6
- */
 public class LogGrpcInterceptor implements ServerInterceptor {
 
     private static final Logger log = LoggerFactory.getLogger(LogGrpcInterceptor.class);

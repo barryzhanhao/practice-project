@@ -17,4 +17,8 @@ public class UserService {
     public UserPo getUser(Long id) {
         return userRepository.findUser(id);
     }
+
+    public UserPo getUser2(Long id) {
+        return userRepository.findUser2(id);
+    }
 }

@@ -1,5 +1,21 @@
 package pers.james.practice.springboog3.config;
 
+import com.baomidou.mybatisplus.annotation.IEnum;
+import com.baomidou.mybatisplus.core.MybatisParameterHandler;
+import com.baomidou.mybatisplus.core.MybatisXMLLanguageDriver;
+import com.baomidou.mybatisplus.core.conditions.AbstractWrapper;
+import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.baomidou.mybatisplus.core.conditions.update.LambdaUpdateWrapper;
+import com.baomidou.mybatisplus.core.conditions.update.UpdateWrapper;
+import com.baomidou.mybatisplus.core.handlers.CompositeEnumTypeHandler;
+import com.baomidou.mybatisplus.core.handlers.MybatisEnumTypeHandler;
+import com.baomidou.mybatisplus.core.toolkit.support.SFunction;
+import com.baomidou.mybatisplus.core.toolkit.support.SerializedLambda;
+import com.baomidou.mybatisplus.extension.handlers.FastjsonTypeHandler;
+import com.baomidou.mybatisplus.extension.handlers.GsonTypeHandler;
+import com.baomidou.mybatisplus.extension.handlers.JacksonTypeHandler;
+import com.baomidou.mybatisplus.extension.spring.MybatisSqlSessionFactoryBean;
 import org.apache.commons.logging.LogFactory;
 import org.apache.ibatis.annotations.DeleteProvider;
 import org.apache.ibatis.annotations.InsertProvider;
@@ -10,6 +26,12 @@ import org.apache.ibatis.cache.decorators.LruCache;
 import org.apache.ibatis.cache.decorators.SoftCache;
 import org.apache.ibatis.cache.decorators.WeakCache;
 import org.apache.ibatis.cache.impl.PerpetualCache;
+import org.apache.ibatis.executor.Executor;
+import org.apache.ibatis.executor.parameter.ParameterHandler;
+import org.apache.ibatis.executor.resultset.ResultSetHandler;
+import org.apache.ibatis.executor.statement.BaseStatementHandler;
+import org.apache.ibatis.executor.statement.RoutingStatementHandler;
+import org.apache.ibatis.executor.statement.StatementHandler;
 import org.apache.ibatis.javassist.util.proxy.ProxyFactory;
 import org.apache.ibatis.javassist.util.proxy.RuntimeSupport;
 import org.apache.ibatis.logging.Log;
@@ -19,6 +41,7 @@ import org.apache.ibatis.logging.log4j2.Log4j2Impl;
 import org.apache.ibatis.logging.nologging.NoLoggingImpl;
 import org.apache.ibatis.logging.slf4j.Slf4jImpl;
 import org.apache.ibatis.logging.stdout.StdOutImpl;
+import org.apache.ibatis.mapping.BoundSql;
 import org.apache.ibatis.reflection.TypeParameterResolver;
 import org.apache.ibatis.scripting.defaults.RawLanguageDriver;
 import org.apache.ibatis.scripting.xmltags.XMLLanguageDriver;
@@ -63,7 +86,9 @@ import java.util.function.Function;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-
+/**
+ * This configuration will move to mybatis-spring-native.
+ */
 @Configuration(proxyBeanMethods = false)
 @ImportRuntimeHints(MyBatisNativeConfiguration.MyBaitsRuntimeHintsRegistrar.class)
 public class MyBatisNativeConfiguration {
@@ -83,7 +108,8 @@ public class MyBatisNativeConfiguration {
         @Override
         public void registerHints(RuntimeHints hints, ClassLoader classLoader) {
             Stream.of(RawLanguageDriver.class,
-                    XMLLanguageDriver.class,
+                    // TODO 增加了MybatisXMLLanguageDriver.class
+                    XMLLanguageDriver.class, MybatisXMLLanguageDriver.class,
                     RuntimeSupport.class,
                     ProxyFactory.class,
                     Slf4jImpl.class,
@@ -99,7 +125,8 @@ public class MyBatisNativeConfiguration {
                     LruCache.class,
                     SoftCache.class,
                     WeakCache.class,
-                    SqlSessionFactoryBean.class,
+                    //TODO 增加了MybatisSqlSessionFactoryBean.class
+                    SqlSessionFactoryBean.class, MybatisSqlSessionFactoryBean.class,
                     ArrayList.class,
                     HashMap.class,
                     TreeSet.class,
@@ -109,6 +136,39 @@ public class MyBatisNativeConfiguration {
                     "org/apache/ibatis/builder/xml/*.dtd",
                     "org/apache/ibatis/builder/xml/*.xsd"
             ).forEach(hints.resources()::registerPattern);
+
+            hints.serialization().registerType(SerializedLambda.class);
+            hints.serialization().registerType(SFunction.class);
+            hints.serialization().registerType(java.lang.invoke.SerializedLambda.class);
+            hints.reflection().registerType(SFunction.class);
+            hints.reflection().registerType(SerializedLambda.class);
+            hints.reflection().registerType(java.lang.invoke.SerializedLambda.class);
+
+            hints.proxies().registerJdkProxy(StatementHandler.class);
+            hints.proxies().registerJdkProxy(Executor.class);
+            hints.proxies().registerJdkProxy(ResultSetHandler.class);
+            hints.proxies().registerJdkProxy(ParameterHandler.class);
+
+//        hints.reflection().registerType(MybatisPlusInterceptor.class);
+            hints.reflection().registerType(AbstractWrapper.class,MemberCategory.values());
+            hints.reflection().registerType(LambdaQueryWrapper.class,MemberCategory.values());
+            hints.reflection().registerType(LambdaUpdateWrapper.class,MemberCategory.values());
+            hints.reflection().registerType(UpdateWrapper.class,MemberCategory.values());
+            hints.reflection().registerType(QueryWrapper.class,MemberCategory.values());
+
+            hints.reflection().registerType(BoundSql.class,MemberCategory.DECLARED_FIELDS);
+            hints.reflection().registerType(RoutingStatementHandler.class,MemberCategory.DECLARED_FIELDS);
+            hints.reflection().registerType(BaseStatementHandler.class,MemberCategory.DECLARED_FIELDS);
+            hints.reflection().registerType(MybatisParameterHandler.class,MemberCategory.DECLARED_FIELDS);
+
+
+            hints.reflection().registerType(IEnum.class,MemberCategory.INVOKE_PUBLIC_METHODS);
+            // register typeHandler
+            hints.reflection().registerType(CompositeEnumTypeHandler.class, MemberCategory.INVOKE_PUBLIC_CONSTRUCTORS);
+            hints.reflection().registerType(FastjsonTypeHandler.class, MemberCategory.INVOKE_PUBLIC_CONSTRUCTORS);
+            hints.reflection().registerType(GsonTypeHandler.class, MemberCategory.INVOKE_PUBLIC_CONSTRUCTORS);
+            hints.reflection().registerType(JacksonTypeHandler.class, MemberCategory.INVOKE_PUBLIC_CONSTRUCTORS);
+            hints.reflection().registerType(MybatisEnumTypeHandler.class, MemberCategory.INVOKE_PUBLIC_CONSTRUCTORS);
         }
     }
 
@@ -253,11 +313,10 @@ public class MyBatisNativeConfiguration {
                 Class<?> mapperInterface = getMapperInterface(beanDefinition);
                 if (mapperInterface != null) {
                     // Exposes a generic type information to context for prevent early initializing
-                    beanDefinition
-                            .setTargetType(ResolvableType.forClassWithGenerics(beanDefinition.getBeanClass(), mapperInterface));
                     ConstructorArgumentValues constructorArgumentValues = new ConstructorArgumentValues();
                     constructorArgumentValues.addGenericArgumentValue(mapperInterface);
                     beanDefinition.setConstructorArgumentValues(constructorArgumentValues);
+                    beanDefinition.setTargetType(ResolvableType.forClassWithGenerics(beanDefinition.getBeanClass(), mapperInterface));
                 }
             }
         }

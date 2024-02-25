@@ -2,17 +2,17 @@ spring:
   application:
     name: springboot3
   datasource:
-      url: jdbc:mysql://127.0.0.1:3306/test?characterEncoding=UTF-8&useSSL=false&allowMultiQueries=true&allowPublicKeyRetrieval=true
+      url: jdbc:mysql://192.168.0.106:3306/test?characterEncoding=UTF-8&useSSL=false&allowMultiQueries=true&allowPublicKeyRetrieval=true
       username: root
       password: root
       driver-class-name: com.mysql.cj.jdbc.Driver
   data:
     mongodb:
-      database: test
-      host: 127.0.0.1
+      database: admin
+      host: 192.168.0.106
       port: 27017
       username: admin
       password: "123456"
     redis:
-      host: 127.0.0.1
-      port: 6378
+      host: 192.168.0.106
+      port: 6379

@@ -16,10 +16,6 @@ import java.util.concurrent.TimeUnit;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-/**
- * @author Michael (yidongnan@gmail.com)
- * @since 2016/12/4
- */
 @RestController
 public class GrpcClientController {
 

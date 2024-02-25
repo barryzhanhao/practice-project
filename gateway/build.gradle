@@ -5,27 +5,8 @@ dependencies {
     implementation "org.springframework.boot:spring-boot-starter-web"
     implementation "org.springframework.boot:spring-boot-starter-actuator"
     implementation "org.springframework.boot:spring-boot-autoconfigure"
-
-    implementation "org.springframework.boot:spring-boot-starter-actuator"
-    implementation "org.springframework.boot:spring-boot-starter-aop"
-    implementation "org.springframework.boot:spring-boot-starter-json"
-    implementation "org.springframework.boot:spring-boot-starter-validation"
-
-    implementation("org.springframework.boot:spring-boot-starter-data-redis")
-
-    implementation "org.springframework.boot:spring-boot-starter-jdbc"
-
-    implementation 'org.springframework.boot:spring-boot-starter-data-mongodb'
-
-    implementation "mysql:mysql-connector-java:8.0.33"
-
-    implementation "jakarta.persistence:jakarta.persistence-api:3.1.0"
-    annotationProcessor "jakarta.persistence:jakarta.persistence-api:3.1.0"
-
-    implementation "org.mybatis.spring.boot:mybatis-spring-boot-starter:3.0.3"
-
-    implementation 'com.baomidou:mybatis-plus-spring-boot3-starter:3.5.5'
-
+    implementation "io.netty:netty-all:$nettyVersion"
+    implementation "com.lmax:disruptor:$disruptorVersion"
 }
 
 graalvmNative {
@@ -48,6 +29,7 @@ graalvmNative {
 
             //buildArgs.add('--initialize-at-run-time=io.netty')
             buildArgs.add('--initialize-at-run-time=io.netty.util.NetUtil')
+            //buildArgs.add('--initialize-at-run-time=java.net.Inet4Address')
 
             buildArgs.add('--initialize-at-build-time=org.springframework.util.unit.DataSize')
             buildArgs.add('--initialize-at-build-time=org.slf4j.LoggerFactory,ch.qos.logback')
@@ -63,19 +45,20 @@ graalvmNative {
             buildArgs.add('--initialize-at-build-time=org.slf4j.impl.StaticLoggerBinder')
             buildArgs.add('--initialize-at-build-time=ch.qos.logback.classic.spi.ThrowableProxy')
             buildArgs.add('--initialize-at-build-time=ch.qos.logback.core.CoreConstants')
-
 //            buildArgs.add('--initialize-at-build-time=io.netty.channel.DefaultFileRegion')
 //            buildArgs.add('--initialize-at-build-time=io.netty.util.AbstractReferenceCounted')
             buildArgs.add('--report-unsupported-elements-at-runtime')
             buildArgs.add('--allow-incomplete-classpath')
             buildArgs.add('-H:+ReportExceptionStackTraces')
+            //perf
 
-            buildArgs.add('--features=pers.james.practice.springboog3.config.LambdaRegistrationFeature')
+            buildArgs.add('-H:-DeleteLocalSymbols')
+            buildArgs.add('-H:+PreserveFramePointer')
 
             buildArgs.add('--gc=G1')
             // buildArgs.add('--gc=parallel')
 //            buildArgs.add("--pgo")
-            buildArgs.add("-O3")
+//            buildArgs.add("-O3")
 //            buildArgs.add("--static")
 
         }

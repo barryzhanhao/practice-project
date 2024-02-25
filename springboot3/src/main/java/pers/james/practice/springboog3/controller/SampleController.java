@@ -22,7 +22,7 @@ public class SampleController {
     private DataVersionLogMongoRepository dataVersionLogMongoRepository;
 
     @Autowired
-    private RedisTemplate redisTemplate;
+    private RedisTemplate<String, String> redisTemplate;
 
     @GetMapping("/hello")
     public String get() {
@@ -34,13 +34,20 @@ public class SampleController {
         return userService.getUser(id);
     }
 
+    @GetMapping(value = "/user2/{id}")
+    public UserPo getUser2(@PathVariable("id") Long id) {
+        return userService.getUser2(id);
+    }
+
     @GetMapping(value = "/mongo")
     public DataVersionLogMongo mongo() {
         return dataVersionLogMongoRepository.get();
     }
 
-    @GetMapping(value = "/redis")
-    public Object redis() {
-        return redisTemplate.opsForValue().get("111");
+    @GetMapping(value = "/redis/{key}")
+    public String redis(@PathVariable("key") String key) {
+        String value = redisTemplate.opsForValue().get(key);
+        log.info("{}:{}", key, value);
+        return value;
     }
 }

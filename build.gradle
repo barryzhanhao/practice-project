@@ -3,12 +3,12 @@ plugins {
     id 'java-library'
     id 'project-report'
     id 'idea'
-    id 'org.springframework.boot' version '3.2.0' apply false
-    id 'org.graalvm.buildtools.native' version '0.9.28' apply false
+    id 'org.springframework.boot' version '3.2.3' apply false
+    id 'org.graalvm.buildtools.native' version '0.10.1' apply false
 }
 
 ext {
-    springBootVersion = '3.2.0'
+    springBootVersion = '3.2.3'
     lombokVersion = '1.18.30'
     guavaVersion = '27.1-jre'
     awaitilityVersion = '4.2.0'
@@ -18,13 +18,14 @@ ext {
     axonVersion = '4.6.1'
     latencyUtilsVersion = '2.0.3'
     commonIOVersion = '2.6'
+    nettyVersion = '4.1.106.Final'
+    disruptorVersion = '4.0.0'
 }
 
 allprojects {
     repositories {
         mavenLocal()
         mavenCentral()
-        jcenter()
         maven {
             url 'https://maven.aliyun.com/nexus/content/groups/public/'
         }
