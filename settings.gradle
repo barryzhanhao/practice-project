@@ -19,4 +19,6 @@ include 'springboot3'
 include 'grpc'
 include 'grpc-server'
 include 'gateway'
+include 'r2dbc'
+include 'sqlite'
 

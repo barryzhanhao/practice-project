@@ -149,3 +149,5 @@ rebel.xml
 .idea/modules.xml
 .idea/modules/
 .idea/vcs.xml
+
+*.db

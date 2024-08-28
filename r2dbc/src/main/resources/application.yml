@@ -1,0 +1,9 @@
+spring:
+  application:
+    name: springboot3
+
+logging:
+  level:
+    org:
+      springframework:
+        r2dbc: DEBUG
