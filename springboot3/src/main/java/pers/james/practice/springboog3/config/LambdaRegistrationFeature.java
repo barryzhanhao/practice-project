@@ -2,7 +2,6 @@ package pers.james.practice.springboog3.config;
 
 import org.graalvm.nativeimage.hosted.Feature;
 import org.graalvm.nativeimage.hosted.RuntimeSerialization;
-import pers.james.practice.springboog3.Application;
 import pers.james.practice.springboog3.internal.repository.UserRepository;
 
 /**

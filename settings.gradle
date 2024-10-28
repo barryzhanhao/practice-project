@@ -21,4 +21,5 @@ include 'grpc-server'
 include 'gateway'
 include 'r2dbc'
 include 'sqlite'
+include 'rabbitmq'
 
