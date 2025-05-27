@@ -6,7 +6,7 @@ dependencies {
     implementation "org.springframework.boot:spring-boot-starter-actuator"
     implementation "org.springframework.boot:spring-boot-autoconfigure"
 
-    implementation 'org.xerial:sqlite-jdbc:3.49.1.0'
+    implementation "org.rocksdb:rocksdbjni:10.2.1"
 }
 
 java {
@@ -70,6 +70,8 @@ graalvmNative {
 
 //            buildArgs.add("--static")
 //            buildArgs.add("--libc=musl")
+            buildArgs.add("-H:IncludeResources=.*\\.so\$")
+            buildArgs.add("--initialize-at-run-time=org.rocksdb.RocksDB")
 
         }
     }

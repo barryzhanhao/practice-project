@@ -151,3 +151,5 @@ rebel.xml
 .idea/vcs.xml
 
 *.db
+
+rockdb/rocksdb-data

@@ -6,7 +6,7 @@ dependencies {
     implementation "org.springframework.boot:spring-boot-starter-actuator"
     implementation "org.springframework.boot:spring-boot-autoconfigure"
 
-    implementation 'org.xerial:sqlite-jdbc:3.49.1.0'
+    implementation 'org.mapdb:mapdb:3.1.0'
 }
 
 java {
@@ -68,8 +68,11 @@ graalvmNative {
 //            buildArgs.add("--pgo")
             buildArgs.add("-O0")
 
-//            buildArgs.add("--static")
-//            buildArgs.add("--libc=musl")
+            buildArgs.add("--static")
+            buildArgs.add("--libc=musl")
+
+            buildArgs.add("--initialize-at-build-time=net.jpountz.xxhash")
+            buildArgs.add("-H:ReflectionConfigurationFiles=${projectDir}/src/main/resources/reflect-config.json")
 
         }
     }
