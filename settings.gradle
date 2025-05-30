@@ -24,4 +24,5 @@ include 'sqlite'
 include 'rabbitmq'
 include 'rockdb'
 include 'mapdb'
+include 'fury'
 
