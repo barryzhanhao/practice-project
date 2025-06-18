@@ -25,4 +25,5 @@ include 'rabbitmq'
 include 'rockdb'
 include 'mapdb'
 include 'fury'
+include 'log4j2'
 
