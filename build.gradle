@@ -9,7 +9,7 @@ plugins {
 
 ext {
     springBootVersion = '3.3.4'
-    lombokVersion = '1.18.30'
+    lombokVersion = '1.18.38'
     guavaVersion = '33.0.0-jre'
     awaitilityVersion = '4.2.0'
     jsoupVersion = '1.12.1'
