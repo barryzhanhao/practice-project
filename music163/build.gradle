@@ -2,4 +2,5 @@ dependencies {
     implementation "org.jsoup:jsoup:$jsoupVersion"
     implementation 'com.squareup.okhttp3:okhttp'
     implementation "commons-io:commons-io:$commonIOVersion"
+    implementation 'org.json:json:20231013'
 }

@@ -30,6 +30,14 @@ allprojects {
             url 'https://maven.aliyun.com/nexus/content/groups/public/'
         }
     }
+    configurations {
+        all{
+            resolutionStrategy {
+                force  'org.mongodb:mongodb-driver-sync:4.7.0'
+                force  'org.mongodb:mongodb-driver-core:4.7.0'
+            }
+        }
+    }
 }
 
 subprojects {
